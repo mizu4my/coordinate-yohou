@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- 検索ページタイトル -->
+    <div class="search-title">
+        <h3>明日のコーデを探す</h3>
+    </div>
+    <!-- 追加したいフィルター：季節、シーン -->
+    <!-- 検索窓 -->
+    <div class="search-window">
+        <form>
+            <div class="container">
+                <div class="row align-items-center" id="filters">
+                    <div class="col" id="filter">
+                        <p>カテゴリー</p>
+                        <select name="category" class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="women">WOMEN</option>
+                            <option value="men">MEN</option>
+                            <option value="kids">KIDS</option>
+                        </select>
+                    </div>
+                    <div class="col" id="filter">
+                        <p>気温</p>
+                        <input type="number" class="form-control" id="temperature">
+                    </div>
+                    <div class="col" id="filter">
+                        <p>天気</p>
+                        <select name="weather" class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="sunny">晴れ</option>
+                            <option value="cloudy">曇り</option>
+                            <option value="rainy">雨</option>
+                        </select>
+                    </div>
+                </div>
+                    <div class="text-center" id="search-button">
+                        <button type="submit">探す</button>
+                    </div> 
+            </div>  
+        </form>
+    </div>
+{% endblock %}
