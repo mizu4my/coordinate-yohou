@@ -8,10 +8,11 @@ CATEGORY_CHOICES = (
     (3, 'KIDS'),
 )
 
-WEATHER_CHOICES = (
-    (1, '晴れ'),
-    (2, '曇り'),
-    (3, '雨')
+SEASON_CHOICES = (
+    (1, '春'),
+    (2, '夏'),
+    (3, '秋'),
+    (4, '冬')
 )
 
 
@@ -19,12 +20,13 @@ class Post(models.Model):
     author = models.CharField(max_length=30, blank=False, null=False)
     category = models.IntegerField(choices=CATEGORY_CHOICES)
     temperature = models.IntegerField(blank=False, null=False)
-    weather = models.IntegerField(choices=WEATHER_CHOICES)
-    title = models.CharField(max_length=30)
+    season = models.IntegerField(choices=SEASON_CHOICES, null=True)
     text = models.TextField(blank=True, null=True)
     brands_tops = models.CharField(max_length=30, blank=True, null=True)
     brands_bottoms = models.CharField(max_length=30, blank=True, null=True)
+    brands_onpiece = models.CharField(max_length=30, blank=True, null=True)
     brands_shoes = models.CharField(max_length=30,blank=True, null=True)
     brands_outer = models.CharField(max_length=30, blank=True, null=True)
     brands_accesory = models.CharField(max_length=30, blank=True, null=True)
-    photo = models.FileField(upload_to = 'static/media/posts', blank=False, null=False)
+    brands_bag = models.CharField(max_length=30, blank=True, null=True)
+    photo = models.ImageField(upload_to = 'media/posts', blank=False, null=False)

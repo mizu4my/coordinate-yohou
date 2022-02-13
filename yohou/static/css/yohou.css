@@ -82,7 +82,6 @@ h4, h3, p {
     display: flex;
 }
 
-.col-5 #post{
-    display: block;
-    margin: 0 auto;
+.img-fluid {
+    margin:20px;
 }
