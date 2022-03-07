@@ -6,3 +6,6 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+staticfiles
+config/local_settings.py
+db.sqlite3
