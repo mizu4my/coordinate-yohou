@@ -26,16 +26,6 @@ SECRET_KEY = 'django-insecure-8i9s-4*=4m$k^2o47tu=zx7*(6&%rxw=+dfh*3jn8g@l4fo-y-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-try:
-    from config.local_settings import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-
-
 ALLOWED_HOSTS = ["coordinate-yohou.herokuapp.com"]
 
 
@@ -166,3 +156,12 @@ LOGOUT_REDIRECT_URL = '/'
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
