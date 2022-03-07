@@ -1,5 +1,7 @@
+argon2==0.1.10
 asgiref==3.4.1
 Django==3.2.9
+django-crispy-forms==1.14.0
 pbd==0.9
 Pillow==9.0.1
 psycopg2==2.9.3

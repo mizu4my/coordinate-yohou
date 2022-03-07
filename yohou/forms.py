@@ -1,4 +1,7 @@
 from django import forms
+from .models import Post
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 class Search(forms.Form):
     category = forms.fields.ChoiceField(
@@ -23,3 +26,28 @@ class Search(forms.Form):
         ),
         required=True
     )
+
+class NewPost(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = {'username', 'category', 'temperature', 'season', 'text', 'photo'}
+        labels = {
+            'username':'ユーザー名', 
+            'category':'カテゴリー',
+            'temperature':'写真撮影日の気温',
+            'season':'写真撮影日の季節',
+            'text':'コメント',
+            'photo':'写真',
+            }
+
+
+class SignUp(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2')
+
+
+class Signin(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+       super().__init__(*args, **kwargs)

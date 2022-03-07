@@ -1,11 +1,20 @@
-h4, h3, p {
+h4, h3, p, li {
     font-family: "Noto Sans JP";
     font-weight: bold;
+    color:#000000;
 }
+
+/* Header */
 
 .header {
     height:80px;
     background-color: #D6CEB7;
+    display:flex;
+}
+
+.logo{
+    float:left;
+    margin-left: 100px;
 }
 
 .header img{
@@ -23,6 +32,36 @@ h4, h3, p {
     font-size: 25px;
 }
 
+.header-menu{
+    margin-left:auto;
+    display:block;
+}
+
+.menu  ul{
+    justify-content: flex-end;
+    margin-top: 25px;
+    margin-right: 100px;
+}
+
+.menu li{
+    margin-top: 15px;
+    display: inline-block;
+    list-style: none;
+    margin-right: 40px;
+    padding: 10px;
+}
+
+button {
+    border:none;
+    border-radius: 100vh;
+    color:#000000;
+    width:125px;
+    height:50px;
+    font-weight: bold;
+    margin-top:-15px;    
+}
+
+/* Form */
 #filters {
     margin-top:50px;
     margin-bottom:50px;
@@ -36,12 +75,16 @@ h4, h3, p {
     text-align: center;
 }
 
-#search-button{
+.requiredField {
+    display: none;
+}
+
+#button{
     margin-top:30px;
     margin-bottom:30px;
 }
 
-#search-button button {
+#button button {
     border-radius: 100vh;
     background-color: #D6CEB7;
     color:#000000;
@@ -51,6 +94,7 @@ h4, h3, p {
     font-weight: bold;
 }
 
+/* 検索結果画面 */
 .results-title {
     margin-top:50px;
     margin-left: 100px;
@@ -66,10 +110,12 @@ h4, h3, p {
 
 #description img {
     width:70%;
+    margin-left:30px;
+    
 }
 
 #description p {
-    margin-top:30px;
+    margin-top:20px;
 }
 
 .posts-title {
@@ -82,6 +128,100 @@ h4, h3, p {
     display: flex;
 }
 
+
 .img-fluid {
+    object-fit: contain; 
     margin:20px;
 }
+
+/* 投稿画面 */
+
+.newpost-title {
+    margin-top:100px;
+    margin-bottom:100px;
+}
+
+.newpost-title h3 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.newpost-title p {
+    text-align: center;
+}
+
+#form2 {
+    margin-bottom:50px;
+}
+
+.new-post-form {
+    margin-bottom: 100px;
+}
+
+#filters2 {
+    padding-left:300px;
+    padding-right:300px;
+    padding-bottom:50px;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: rgb(177, 177, 177);
+    
+}
+
+#filter2 {
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+#filter2 p{
+    text-align: center;
+}
+
+#div_id_text label {
+    display:none;
+}
+
+/* ログイン/会員登録 */
+.sign-in-title{
+    margin-top:100px;
+}
+
+.sign-in-title button{
+    margin-top:30px;
+}
+
+.sign-in-title small{
+    display: none;
+}
+
+.sign-in-title h3{
+    margin-top:50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sign-in-title p {
+    text-align: center;
+}
+
+.sign-up-title h3 {
+    margin-top:50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sign-up-title p {
+    text-align: center;
+}
+
+#filters3 {
+    padding-left:300px;
+    padding-right:300px;
+    padding-bottom:5px;
+    /* border-style: solid;
+    border-color: rgb(177, 177, 177);
+    border-left:none;
+    border-right:none;
+    border-bottom:none; */
+}
+
