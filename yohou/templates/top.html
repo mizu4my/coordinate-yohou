@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <!-- 検索ページタイトル -->
     <div class="search-title">
@@ -13,18 +14,18 @@
                 <div class="row align-items-center" id="filters">
                     <div class="col" id="filter">
                         <p>カテゴリー</p>
-                        {{ form.category }}
+                        {{ form.category |as_crispy_field }}
                     </div>
                     <div class="col" id="filter">
                         <p>気温</p>
-                        {{ form.temperature }}
+                        {{ form.temperature |as_crispy_field }}
                     </div>
                     <div class="col" id="filter">
                         <p>季節</p>
-                        {{ form.season }}
+                        {{ form.season |as_crispy_field }}
                     </div>
                 </div>
-                    <div class="text-center" id="search-button">
+                    <div class="text-center" id="button">
                         <button type="submit">探す</button>
                     </div> 
             </div>  

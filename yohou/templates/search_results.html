@@ -9,14 +9,16 @@
 <!-- 服装の説明 -->
 <!-- レスポンシブ対応する -->
 <div class="container" id="description">
+   {% for a in advice %}
     <div class="row">
         <div class="col-5"> 
-            <img src="{% static 'media/example.jpeg' %}">
+            <img src="{{ a.photo.url }}">
         </div>
         <div class="col-7">
-            <p>気温20度の日は朝は少し冷えますが、日中は暖かいので、薄手の長袖などが良いでしょう。</p>
+            <p>{{ a.text }}</p>
         </div>
     </div>
+    {% endfor %}
 </div>
 <!-- コーデ一覧 -->
 <div class="results">
@@ -27,13 +29,7 @@
         <div class="d-flex flex-row">
             {% for post in posts %}
             <div class="d-flex flex-column">
-                  <img src="{{ post.photo.url }}" class="img-fluid">
-            </div>
-            <div class="d-flex flex-column">
-                  <img src="{{ post.photo.url }}" class="img-fluid">
-            </div>
-            <div class="d-flex flex-column">
-               <img src="{{ post.photo.url }}" class="img-fluid">
+                  <img src="{{ post.photo.url }}" class="img-fluid justify-content-between ">
             </div>
             {% endfor %}
         </div>

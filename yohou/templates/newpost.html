@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="newpost-title">
+    <h3>POST YOUR CORRDINATE</h3>
+    <p>コーディネートを投稿しよう</p>
+</div>
+<div>
+    <form class="new-post-form" action='{% url "posted" %}' method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container" id="form2">
+            <div id="filters2">
+                <div class="col" id="filter2"> 
+                    <p>ユーザー名</p>
+                    {{ form.username |as_crispy_field }}
+                </div> 
+                <div class="col" id="filter2">
+                    <p>カテゴリー</p>
+                    {{ form.category |as_crispy_field }}
+                </div>
+                <div class="col" id="filter2"> 
+                    <p>写真撮影日の気温</p>
+                    {{ form.temperature |as_crispy_field }}
+                </div>
+                <div class="col" id="filter2"> 
+                    <p>写真撮影日の季節</p>
+                    {{ form.season |as_crispy_field }}
+                </div>
+                <div class="col" id="filter2"> 
+                    <p>コメント</p>
+                    {{ form.text |as_crispy_field }}
+                </div>
+                <div class="col" id="filter2"> 
+                    <p>写真</p>
+                    {{ form.photo |as_crispy_field }}
+                </div>
+            </div>
+        </div>
+        <div class="text-center" id="button">
+            <button type="submit">投稿する</button>
+        </div> 
+    </form>
+</div>
+
+{% endblock %}

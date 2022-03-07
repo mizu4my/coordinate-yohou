@@ -14,7 +14,19 @@
 </head>
 <body>
     <div class="header">
-        <a href="/"><img src="{% static 'media/logo.png' %}" alt="コーディネート予報ロゴ" height="80" id="logo"></a>
+        <div class="logo">
+            <a href="/"><img src="{% static 'media/logo.png' %}" alt="コーディネート予報ロゴ" height="80" id="logo"></a>
+        </div>
+        <div class="header-menu">
+            <ul class="menu">
+                {% if user.is_authenticated %}
+                <li><button type=“button” onclick="location.href='/newpost'">投稿する</button></li>
+                <li><button type=“button” onclick="location.href='/signout'">ログアウト</button></li>
+                {% else %}
+                <li><button type=“button” onclick="location.href='/signin'">ログイン</button></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
     {% block content %}
     {% endblock %}
