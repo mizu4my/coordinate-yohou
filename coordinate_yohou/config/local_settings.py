@@ -12,6 +12,8 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['127.0.0.1:8000/']
+SECRET_KEY = 'django-insecure-8i9s-4*=4m$k^2o47tu=zx7*(6&%rxw=+dfh*3jn8g@l4fo-y-'
+
+ALLOWED_HOSTS = ['127.0.0.1']
 
 DEBUG = True
