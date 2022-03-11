@@ -39,3 +39,10 @@ class Advice(models.Model):
     season = models.IntegerField(choices=SEASON_CHOICES, null=True)
     text = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to = 'static/media/advices', blank=False, null=False)
+
+# class CustomUser(AbstractUser):
+#     city = models.CharField(max_length=30, blank=True, null=True)
+
+class WeatherIcon(models.Model):
+    weather = models.CharField(max_length=30, blank=True, null=True)
+    weather_icon = models.ImageField(upload_to = 'static/media/season_icon', blank=False, null=False)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- 検索結果タイトル -->
+<div>
+    <img src="{{ post.photo.url }}" class="img-fluid justify-content-between ">
+</div>
+<div class="results-title">
+    <p>{{ category }}</p>
+    <p>{{ season }}</p>
+    <p>{{ post.temperature }}</p>
+    <p>{{ post.text }}</p>
+</div>
+
+
+{% endblock %}

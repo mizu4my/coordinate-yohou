@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- 検索結果タイトル -->
+<div class="results-title">
+    <h4>{{ category }}</h4>
+    <h3>{{ season }} {{ temp_start_range}}〜{{ temp_end_range }}度 の日のコーデ</h3>
+</div>
+<!-- 服装の説明 -->
+<!-- レスポンシブ対応する -->
+<div class="container" id="description">
+   {% for a in advice %}
+    <div class="row">
+        <div class="col-5"> 
+            <img src="{{ a.photo.url }}">
+        </div>
+        <div class="col-7">
+            <p>{{ a.text }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- コーデ一覧 -->
+<div class="results">
+    <div class="posts-title">
+        <h4>みんなのコーデ</h4>
+    </div>
+    <div class="container" id="posts">
+        {% comment %} <div class="d-flex flex-row"> {% endcomment %}
+        <div class="row">
+            {% for post in posts %}
+            {% comment %} <div class="d-flex flex-column"> {% endcomment %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <a href="{% url 'post_detail' post.pk %}""><img src="{{ post.photo.url }}" class="img-fluid justify-content-between "></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,7 +1,8 @@
 from django import forms
 from .models import Post
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from localflavor.jp.forms import JP_PREFECTURES
 
 class Search(forms.Form):
     category = forms.fields.ChoiceField(
@@ -40,6 +41,8 @@ class NewPost(forms.ModelForm):
             'photo':'写真',
             }
 
+class ChangeLocation(forms.Form):
+    pref = forms.ChoiceField(choices=JP_PREFECTURES, initial='tokyo')
 
 class SignUp(UserCreationForm):
 

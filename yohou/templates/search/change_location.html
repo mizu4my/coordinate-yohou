@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="search-window" id="change_location_container">
+    <form method="post" id="change_location_form">
+        {% csrf_token %}
+        <div class="container" id="change_location">
+            <div class="row align-items-center" id="filters">
+                <div class="col" id="filter">
+                    <h4>位置情報の変更</h4>
+                    <p>都道府県を選択してください。</p>
+                    <select class="form-select" id="pref">
+                        <option value={{ form.pref}}</option>
+                    </select>
+                </div>
+                <div class="text-center" id="button">
+                    <button type="submit">変更する</button>
+                </div> 
+        </div>  
+    </form>
+</div>
+{% endblock %}

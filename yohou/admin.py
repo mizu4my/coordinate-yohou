@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Post, Advice
+from .models import Post, Advice, WeatherIcon
 
 # Register your models here.
 admin.site.register(Post)
 admin.site.register(Advice)
+admin.site.register(WeatherIcon)
