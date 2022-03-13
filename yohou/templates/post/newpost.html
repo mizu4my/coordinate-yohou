@@ -11,10 +11,6 @@
         {% csrf_token %}
         <div class="container" id="form2">
             <div id="filters2">
-                <div class="col" id="filter2"> 
-                    <p>ユーザー名</p>
-                    {{ form.username |as_crispy_field }}
-                </div> 
                 <div class="col" id="filter2">
                     <p>カテゴリー</p>
                     {{ form.category |as_crispy_field }}

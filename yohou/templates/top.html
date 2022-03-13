@@ -6,7 +6,7 @@
     <div class="search-title">
         <div class="container" id="weather">
             <div class="weather-container">
-                <img src="{% static 'media/location.png' %}" width="5%">東京<a href="/change_location">(変更)</a>
+                <img src="{% static 'media/location.png' %}" width="5%">{{ pref_name }}<a href="/change_location">(変更)</a>
                 <div class="row">
                     <div class="col">
                         <span id="weather-title">今日の天気</span>

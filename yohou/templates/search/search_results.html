@@ -26,13 +26,11 @@
         <h4>みんなのコーデ</h4>
     </div>
     <div class="container" id="posts">
-        {% comment %} <div class="d-flex flex-row"> {% endcomment %}
         <div class="row">
             {% for post in posts %}
-            {% comment %} <div class="d-flex flex-column"> {% endcomment %}
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                  <a href="{% url 'post_detail' post.pk %}""><img src="{{ post.photo.url }}" class="img-fluid justify-content-between "></a>
+                  <a href="{% url 'post_detail' post.pk %}" id="thumbnail"><img src="{{ post.photo.url }}" class="img-fluid justify-content-between "></a>
                 </div>
             </div>
             {% endfor %}

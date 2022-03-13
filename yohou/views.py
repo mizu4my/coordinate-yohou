@@ -7,6 +7,8 @@ from datetime import datetime
 import urllib.request
 import pandas as pd
 import json
+from bs4 import BeautifulSoup
+import re
 # SignUp
 from django.contrib.auth import login
 from django.urls import reverse_lazy
@@ -24,6 +26,7 @@ def top(request):
         #天気予報API
         default_city_code = '130010'  #東京のcityコード
         url = "https://weather.tsukumijima.net/api/forecast/city/" + default_city_code
+        pref_name = '東京都'
         try:
             response = requests.get(url)
             response.raise_for_status()     # ステータスコード200番台以外は例外とする
@@ -73,6 +76,7 @@ def top(request):
             'temperature_today_max' : temperature_today_max,
             'temperature_tomorrow_min' : temperature_tomorrow_min,
             'temperature_tomorrow_max' : temperature_tomorrow_max,
+            'pref_name' : pref_name
             }
         return render(request, 'top.html', context)
     
@@ -185,8 +189,109 @@ def changeLocation(request):
         context = {"form" : form}
         return render(request, template_name, context)
     if request.method == 'POST':
-        pref = form.cleaned_data['prefecture']
-        with open('../resas_api_key.json')
+        form = ChangeLocation(request.POST)
+        if not form.is_valid():
+            template_name = "search/change_location.html"
+            context = {'form' : form}
+            return render(request, template_name, context)
+        else:
+            pref = form.cleaned_data["pref"]
+            p = str(form.as_p())
+            p_location = p.find('selected>')
+            start = p_location + 9
+            end = start + 3
+            selected_pref = p[start:end]
+            url = 'https://weather.tsukumijima.net/primary_area.xml'
+            res = requests.get(url)
+            soup = BeautifulSoup(res.text, 'html.parser')
+            res.close()
+            all_pref = soup.find_all("pref")
+            for i in range(47):
+                title = all_pref[i].attrs['title']
+                if selected_pref in title:
+                    for i, child in enumerate(all_pref[i].children):
+                        print(child)
+                        if i == 2:
+                            city_code = child.attrs['id']
+                            pref_name = title
+                            break
+                else:
+                    i += 1
+
+
+            # with open('resas_api_key.json') as f:
+            #         resas_api_key = json.load(f)
+            # resas_url1 = 'https://opendata.resas-portal.go.jp/api/v1/prefectures'
+            # req = urllib.request.Request(resas_url1, headers=resas_api_key)
+            # with urllib.request.urlopen(req) as response:
+            #     data = response.read()
+            #     d = json.loads(data.decode())
+            #     j = pd.json_normalize(d['result'])
+            #     s_name = j.set_index('prefName')['prefCode']
+            #     pref_code = s_name[selected_pref]
+
+            # resas_url2 = 'https://opendata.resas-portal.go.jp/api/v1/cities?prefCode='+str(pref_code)
+            # req = urllib.request.Request(resas_url2, headers=resas_api_key)
+            # with urllib.request.urlopen(req) as response:
+            #     data = response.read()
+            #     d = json.loads(data.decode())
+            #     j = pd.json_normalize(d['result'])
+            #     city_code = j.iloc[0, 1]
+
+            url = "https://weather.tsukumijima.net/api/forecast/city/" + city_code
+            try:
+                response = requests.get(url)
+                response.raise_for_status()     # ステータスコード200番台以外は例外とする
+            except requests.exceptions.RequestException as e:
+                print("Error:{}".format(e))
+            else:
+                weather_json = response.json()
+                weather_today = weather_json['forecasts'][0]['telop']
+                weather_tomorrow = weather_json['forecasts'][1]['telop']
+                weather_day_after_tomorrow = weather_json['forecasts'][2]['telop']
+                temperature = weather_json['forecasts'][0]['temperature']['max']['celsius']
+                temperature_today_min = weather_json['forecasts'][0]['temperature']['min']['celsius']
+                temperature_today_max = weather_json['forecasts'][0]['temperature']['max']['celsius']
+                temperature_tomorrow_min = weather_json['forecasts'][1]['temperature']['min']['celsius']
+                temperature_tomorrow_max = weather_json['forecasts'][1]['temperature']['max']['celsius']
+
+            if temperature == None:
+                temperature = 10
+            if temperature_today_min == None:
+                temperature_today_min = '-'
+            if temperature_today_max == None:
+                temperature_today_max = '-'
+            if temperature_tomorrow_min == None:
+                temperature_tomorrow_min = '-'
+            if temperature_tomorrow_max == None:
+                temperature_tomorrow_max = '-'
+
+            today = datetime.today()
+            season = get_season(today)
+
+            #フォームの初期値
+            initial_dict = dict(category = 'WOMEN', temperature = temperature, season = season)
+
+            weather_icon1 = get_weather_icon(weather_today)
+            weather_icon2 = get_weather_icon(weather_tomorrow)
+
+            form = Search(initial=initial_dict)
+
+            context = { 
+                'form' : form,
+                'weather_today' : weather_today,
+                'weather_tomorrow' : weather_tomorrow,
+                'weather_day_after_tomorrow' : weather_day_after_tomorrow,
+                'weather_icon1' : weather_icon1,
+                'weather_icon2' : weather_icon2,
+                'temperature_today_min' : temperature_today_min,
+                'temperature_today_max' : temperature_today_max,
+                'temperature_tomorrow_min' : temperature_tomorrow_min,
+                'temperature_tomorrow_max' : temperature_tomorrow_max,
+                'pref_name' : pref_name
+                }
+            return render(request, 'top.html', context)
+            
 
 
 def get_start_end_temperature(temperature):

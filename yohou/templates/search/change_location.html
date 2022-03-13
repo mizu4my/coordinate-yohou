@@ -11,12 +11,15 @@
                     <h4>位置情報の変更</h4>
                     <p>都道府県を選択してください。</p>
                     <select class="form-select" id="pref">
-                        <option value={{ form.pref}}</option>
+                        <option value="{{ form.pref }}{{ form.pref|as_crispy_field }}</option>
                     </select>
                 </div>
                 <div class="text-center" id="button">
                     <button type="submit">変更する</button>
                 </div> 
+            </div>
+        </div>  
+            </div>
         </div>  
     </form>
 </div>
