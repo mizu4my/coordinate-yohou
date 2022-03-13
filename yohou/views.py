@@ -174,7 +174,6 @@ class SignUp(CreateView):
         self.object = user 
         return HttpResponseRedirect(self.get_success_url()) # リダイレクト
     
-
 class Login(LoginView):
     form_class = Signin
     template_name = "accounts/signin.html"
