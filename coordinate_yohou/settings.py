@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'yohou',
     'crispy_forms',
-     'localflavor',
+    'localflavor',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +116,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CloudDinary settings
+CLOUDINARY_STORAGE  = {
+    'CLOUD_NAME':'hzcmqond7',
+    'API_KEY': os.environ['CLOUD_DINARY_API_KEY'],
+    'API_SECRET': os.environ['ag0HH-eQgPUdQtc9sEebM4ufSHA']
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -137,6 +146,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
