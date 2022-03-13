@@ -12,3 +12,4 @@ db.sqlite3
 Procfile
 runtime.txt
 .python-version
+resas_api_key.json
