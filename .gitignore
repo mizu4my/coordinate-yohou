@@ -8,8 +8,8 @@ db.sqlite3
 staticfiles
 local_settings.py
 db.sqlite3
-.env
-Procfile
-runtime.txt
-.python-version
-resas_api_key.json
+#.env
+#Procfile
+#runtime.txt
+#.python-version
+#resas_api_key.json
