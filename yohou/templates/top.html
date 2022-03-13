@@ -1,9 +1,40 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
     <!-- 検索ページタイトル -->
     <div class="search-title">
-        <h3>明日のコーデを探す</h3>
+        <div class="container" id="weather">
+            <div class="weather-container">
+                <img src="{% static 'media/location.png' %}" width="5%">{{ pref_name }}<a href="/change_location">(変更)</a>
+                <div class="row">
+                    <div class="col">
+                        <span id="weather-title">今日の天気</span>
+                        {% for w1 in weather_icon1 %}
+                            <img src="{{ w1.weather_icon.url }}" width="15%">
+                        {% endfor %}
+                        <span>{{ weather_today }}</span>
+                        <span>|</span>
+                        <span>{{ temperature_today_min }}°</span>
+                        <span>〜</span>
+                        <span>{{ temperature_today_max }}°</span>
+                    </div>
+                    <div class="col">
+                        <span id="weather-title" >明日の天気</span>
+                        {% for w2 in weather_icon2 %}
+                            <img src="{{ w2.weather_icon.url }}" width="15%">
+                        {% endfor %}
+                        <span>{{ weather_tomorrow }}</span>
+                        <span>|</span>
+                        <span>{{ temperature_tomorrow_min }}°</span>
+                        <span>〜</span>
+                        <span>{{ temperature_tomorrow_max }}°</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>LET'S FIND OUT PERFECT OUTFIT FOR TODAY.</h3>
+        <p>今日の気候にぴったりな服装を探そう</p>
     </div>
     <!-- 追加したいフィルター：季節、シーン -->
     <!-- 検索窓 -->

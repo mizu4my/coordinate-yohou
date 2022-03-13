@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- 検索結果タイトル -->
+<div class="container">
+    <div class="row" id="post-detail">
+        <div class="col-5">
+            <img src="{{ post.photo.url }}" class="img-fluid justify-content-between ">
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-6" id="post-info">
+            <div class="title">
+                <h4>{{ category }}</h4>
+                <span>季節 : {{ season }} </span>
+                <span>気温 : {{ post.temperature }}度</span>
+            </div>
+            <div class="coment">
+                <text>{{ post.text }}</text>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

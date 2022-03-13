@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/yohou.css' %}">
+    <!-- JavaScript-->
+    <script src="{% static 'js/index.js' %}"></script>
     <title>Home</title>
 </head>
 <body>
@@ -20,6 +22,7 @@
         <div class="header-menu">
             <ul class="menu">
                 {% if user.is_authenticated %}
+                {% comment %} <li><button type=“button” onclick="location.href='/mypage'">マイページ</button></li> {% endcomment %}
                 <li><button type=“button” onclick="location.href='/newpost'">投稿する</button></li>
                 <li><button type=“button” onclick="location.href='/signout'">ログアウト</button></li>
                 {% else %}
